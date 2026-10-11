@@ -50,6 +50,35 @@ async function seedDemoUsers() {
       console.log(`Created: ${demoUser.email} (${demoUser.role})`);
     }
 
+    if (process.env.SHOP_DEMO_PASSWORD) {
+      if (process.env.SHOP_DEMO_PASSWORD.length < 8) {
+        throw new Error("SHOP_DEMO_PASSWORD must be at least 8 characters");
+      }
+
+      const shopDemoUser = {
+        name: "Demo Shop",
+        email: "shop.demo@greencycle.test",
+        password: process.env.SHOP_DEMO_PASSWORD,
+        role: "shop",
+        businessName: "GreenCycle Demo Shop",
+        address: "Delhi, India",
+      };
+      const existingShopUser = await User.findOne({
+        email: shopDemoUser.email,
+      });
+
+      if (existingShopUser) {
+        console.log(`Already exists: ${shopDemoUser.email}`);
+      } else {
+        await User.create(shopDemoUser);
+        console.log(`Created: ${shopDemoUser.email} (${shopDemoUser.role})`);
+      }
+    } else {
+      console.log(
+        "Shop demo account not configured; set SHOP_DEMO_PASSWORD to seed it."
+      );
+    }
+
     console.log("Demo account setup complete.");
     process.exitCode = 0;
   } catch (error) {
