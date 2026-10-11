@@ -1,16 +1,19 @@
-# React + Vite
+# GreenCycle client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## API configuration
 
-Currently, two official plugins are available:
+The client reads its API base URL from `VITE_API_URL`. Include the backend's
+`/api` prefix, for example:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```text
+VITE_API_URL=https://your-deployed-backend.example.com/api
+```
 
-## React Compiler
+Set this variable in the frontend hosting provider's environment settings
+before building/deploying the client. Vite embeds `VITE_` variables in the
+build, so rebuild after changing it. If unset, the client uses same-origin
+`/api`, which works with a production reverse proxy. In local development, Vite
+proxies `/api` requests to `http://localhost:5000`.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+If the deployed backend has a separate public domain, set `VITE_API_URL` to
+that backend URL ending in `/api`, then rebuild the client.

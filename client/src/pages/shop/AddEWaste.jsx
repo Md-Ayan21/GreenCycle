@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.jsx";
-
-const API_BASE_URL = "http://localhost:5000/api";
+import { API_BASE_URL } from "../../config/api";
 
 function AddEWaste() {
   const navigate = useNavigate();

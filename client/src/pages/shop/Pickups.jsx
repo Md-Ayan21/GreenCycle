@@ -2,8 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import DashboardLayout from "../../layouts/DashboardLayout";
 import { useAuth } from "../../context/AuthContext.jsx";
-
-const API_BASE_URL = "http://localhost:5000/api";
+import { API_BASE_URL } from "../../config/api";
 
 function Pickups() {
   const [searchParams, setSearchParams] = useSearchParams();

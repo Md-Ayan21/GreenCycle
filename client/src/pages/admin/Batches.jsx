@@ -2,8 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import DashboardLayout from "../../layouts/DashboardLayout";
 import { useAuth } from "../../context/AuthContext";
-
-const API_URL = "http://localhost:5000/api";
+import { API_BASE_URL as API_URL } from "../../config/api";
 
 function Batches() {
   const { token } = useAuth();

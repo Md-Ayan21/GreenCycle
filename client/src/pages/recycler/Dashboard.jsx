@@ -3,8 +3,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import DashboardLayout from "../../layouts/DashboardLayout";
 import { useAuth } from "../../context/AuthContext";
-
-const API_BASE = "http://localhost:5000/api";
+import { API_BASE_URL as API_BASE } from "../../config/api";
 
 function Dashboard() {
   const { token } = useAuth();
